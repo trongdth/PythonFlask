@@ -1,0 +1,9 @@
+Flask
+jsonify
+Flask-RESTful
+Flask-JWT
+Flask-SQLAlchemy
+
+#vitualenv venv --python=python3.6
+#source venv/bin/activate
+#deactivate
