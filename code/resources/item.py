@@ -1,4 +1,3 @@
-import sqlite3
 from flask_restful import Resource, reqparse
 from flask_jwt import jwt_required
 from models.item import ItemModel
@@ -9,6 +8,12 @@ class Item(Resource):
         type = float,
         required = True,
         help = 'This field cannot left blank!'
+    )
+
+    parser.add_argument('store_id',
+        type = int,
+        required = True,
+        help = 'Every item needs a store id!'
     )
 
     @jwt_required()
@@ -25,7 +30,7 @@ class Item(Resource):
 
         data = self.parser.parse_args()
 
-        item = ItemModel(name, data['price'])
+        item = ItemModel(name, **data)
         try:
             item.save_to_db()
         except:
@@ -45,7 +50,7 @@ class Item(Resource):
         item = ItemModel.find_by_name(name)
 
         if item is None:
-            item = ItemModel(name, data['price'])
+            item = ItemModel(name, **data)
         else:
             item.price = data['price']
 
@@ -56,14 +61,4 @@ class Item(Resource):
 
 class ItemList(Resource):
     def get(self):
-        connection = sqlite3.connect("data.db")
-        cursor = connection.cursor()
-
-        query = "SELECT * FROM items"
-        rows = cursor.execute(query)
-
-        items = []
-        for row in rows:
-            items.append({'name' : row[0], 'price': row[1]})
-        connection.close()
-        return {'items': items}
+        return {'items': [item.json() for item in ItemModel.query.all()]}

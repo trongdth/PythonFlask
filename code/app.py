@@ -5,6 +5,7 @@ from security import authenticate, identity
 from resources.user import UserRegister
 from resources.item import Item, ItemList
 from resources.home import Home
+from resources.store import Store, StoreList
 
 app = Flask(__name__, template_folder='../templates')
 app.config['JWT_AUTH_HEADER_PREFIX'] = 'Bearer'
@@ -13,12 +14,18 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'trongdth'
 api = Api(app)
 
+@app.before_first_request
+def create_tables():
+    db.create_all()
+
 jwt = JWT(app, authenticate, identity)
 
 api.add_resource(Item, '/item/<string:name>')
 api.add_resource(ItemList, '/items')
 api.add_resource(UserRegister, '/register')
 api.add_resource(Home, '/')
+api.add_resource(Store, '/store/<string:name>')
+api.add_resource(StoreList, '/stores')
 
 if __name__ == "__main__":
     from db import db
