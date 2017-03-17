@@ -3,6 +3,7 @@ jsonify
 Flask-RESTful
 Flask-JWT
 Flask-SQLAlchemy
+uwsgi
 
 #vitualenv venv --python=python3.6
 #source venv/bin/activate
