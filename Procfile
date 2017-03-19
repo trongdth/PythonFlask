@@ -1,1 +1,1 @@
-web: env PYTHONPATH=$PYTHONPATH:$PWD uwsgi uwsgi.ini
+web: uwsgi uwsgi.ini
