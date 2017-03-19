@@ -1,0 +1,245 @@
+{
+	"variables": [],
+	"info": {
+		"name": "PythonFlask",
+		"_postman_id": "7d73da67-d291-6eef-89d8-502f2998e0d6",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/items",
+			"request": {
+				"url": "{{url}}/items",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"price\" : 15.0\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "/item/<name>",
+			"request": {
+				"url": "{{url}}/item/chair",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"price\" : 15.0\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "/item/<name>",
+			"request": {
+				"url": "{{url}}/item/test",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"price\" : 15.0\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "/item/<name>",
+			"request": {
+				"url": "{{url}}/item/chair",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"price\" : 19.50,\n\t\"store_id\" : 1\t\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "/item/<name>",
+			"request": {
+				"url": "{{url}}/item/chair",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"price\" : 15.0,\n\t\"store_id\" : 1\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "/oauth",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"Access token\"] = jsonData.access_token !== \"\";",
+							"",
+							"",
+							"postman.setEnvironmentVariable(\"jwt_token\", jsonData.access_token);"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{url}}/auth",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"trongdth\",\n\t\"password\": \"123\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "/register",
+			"request": {
+				"url": "{{url}}/register",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"trongdth\",\n\t\"password\": \"123\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "/stores",
+			"request": {
+				"url": "{{url}}/stores",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"price\" : 15.0\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "/store/<name>",
+			"request": {
+				"url": "{{url}}/store/trong",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"price\" : 15.0\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "/store/<name>",
+			"request": {
+				"url": "{{url}}/store/trong",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "/store/<name> copy",
+			"request": {
+				"url": "{{url}}/store/trong",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
